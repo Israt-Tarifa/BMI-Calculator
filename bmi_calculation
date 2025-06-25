@@ -1,0 +1,97 @@
+import 'package:flutter/material.dart';
+class BmiCalculation extends StatefulWidget {
+  BmiCalculation({Key? key}) : super(key: key);
+
+  @override
+  State<BmiCalculation> createState() => _BmiCalculationState();
+}
+
+class _BmiCalculationState extends State<BmiCalculation> {
+  TextEditingController height = TextEditingController();
+
+  TextEditingController weight = TextEditingController();
+  double ans = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "BMI Calculator",
+ style: TextStyle(
+              color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.black,
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(40.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            TextFormField(
+              controller: weight,
+              cursorColor: Colors.black,
+              decoration: InputDecoration(
+                labelText: 'Enter your weight in kg',
+                hintText: '50',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                  borderSide: BorderSide(
+                      style: BorderStyle.solid, color: Colors.black, width: 10),
+                  gapPadding: 5.0,
+                ),
+),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            TextFormField(
+              controller: height,
+              cursorColor: Colors.black,
+              decoration: InputDecoration(
+                labelText: 'Enter your height in meter',
+                hintText: '150',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                  borderSide: BorderSide(
+                      style: BorderStyle.solid, color: Colors.black, width: 10),
+                  gapPadding: 5.0,
+                ),
+              ),
+),
+            SizedBox(
+              height: 15,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  int x = int.parse(height.text);
+                  int y = int.parse(weight.text);
+                  setState(() {
+                    ans = y / (x * x);
+                    // if (ans >= 18.5 && ans <= 24.5) {
+                    //   Lottie.asset(
+                    //       'assets/24137-limarp-normal-results-for-bmi-calculator.json',
+                    //       height: 200,
+                    //       width: 200,
+                    //       fit: BoxFit.fill);
+                    // }
+                  });
+                },
+                child: Text("Calculate")),
+            SizedBox(
+              height: 15,
+            ),
+            Text(
+              '$ans',
+style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
